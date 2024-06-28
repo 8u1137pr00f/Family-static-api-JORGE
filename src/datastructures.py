@@ -6,8 +6,6 @@ update this file to implement the following already declared methods:
 - update_member: Should update a member from the self._members list
 - get_member: Should return a member from the self._members list
 """
-from random import randint
-
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
@@ -20,15 +18,15 @@ class FamilyStructure:
         return generated_id
 
     def add_member(self, member):
-        # Asegúrate de que el id sea único
         if 'id' not in member:
             member['id'] = self._generate_id()
+        member['last_name'] = self.last_name
         self._members.append(member)
 
     def delete_member(self, id):
-        for member in self._members:
+        for i, member in enumerate(self._members):
             if member['id'] == id:
-                self._members.remove(member)
+                del self._members[i]
                 return True
         return False
 
